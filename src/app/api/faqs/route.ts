@@ -1,0 +1,2 @@
+import { NextResponse } from 'next/server'; import { faqRepo } from '@/lib/repository'; import { connectMongo,hasMongo } from '@/lib/mongodb'; import { FaqModel } from '@/models/mongoose'; const Model=FaqModel as any;
+export async function GET(){if(hasMongo){await connectMongo();return NextResponse.json({success:true,data:await Model.find().sort({order:1}).lean()})}return NextResponse.json({success:true,data:faqRepo.list()})}

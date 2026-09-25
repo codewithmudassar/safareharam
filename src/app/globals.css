@@ -1,0 +1,62 @@
+@import "tailwindcss";
+@theme {
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Manrope", Arial, sans-serif;
+  --color-primary: oklch(0.25 0.065 160);
+  --color-primary-foreground: #fbf7eb;
+  --color-gold: #d9ad57;
+  --color-gold-strong: #a97b2e;
+  --color-ivory: #fffdf7;
+  --color-ivory-deep: #f5f0e4;
+  --color-muted: #66736c;
+  --color-border: #ded8c9;
+}
+:root {
+  --overlay: rgba(11, 34, 27, 0.72);
+}
+* {
+  box-sizing: border-box;
+  border-color: var(--color-border);
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  background: var(--color-ivory);
+  color: #24332d;
+  font-family: var(--font-sans);
+}
+::selection {
+  background: var(--color-gold);
+  color: var(--color-primary);
+}
+.islamic-pattern {
+  background-image:
+    linear-gradient(
+      30deg,
+      rgba(217, 173, 87, 0.12) 12%,
+      transparent 12.5%,
+      transparent 87%,
+      rgba(217, 173, 87, 0.12) 87.5%
+    ),
+    linear-gradient(
+      150deg,
+      rgba(217, 173, 87, 0.12) 12%,
+      transparent 12.5%,
+      transparent 87%,
+      rgba(217, 173, 87, 0.12) 87.5%
+    );
+  background-size: 56px 98px;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

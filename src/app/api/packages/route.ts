@@ -1,0 +1,4 @@
+import { NextResponse } from 'next/server'; import { packageRepo } from '@/lib/repository'; import { connectMongo,hasMongo } from '@/lib/mongodb'; import { PackageModel } from '@/models/mongoose';
+const MongoPackage=PackageModel as any;
+export async function GET(){if(hasMongo){await connectMongo();const data=await MongoPackage.find().sort({createdAt:-1}).lean();return NextResponse.json({success:true,data})}return NextResponse.json({success:true,data:packageRepo.all()})}
+export async function POST(request:Request){try{const body=await request.json();if(hasMongo){await connectMongo();const data=await MongoPackage.create({...body,id:body.id||crypto.randomUUID()});return NextResponse.json({success:true,data:data.toObject()},{status:201})}return NextResponse.json({success:true,data:packageRepo.create(body)},{status:201})}catch(error){return NextResponse.json({success:false,message:error instanceof Error?error.message:'Invalid request'},{status:400})}}

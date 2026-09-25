@@ -1,0 +1,11 @@
+import mongoose, { Schema } from 'mongoose';
+const PackageSchema = new Schema({ id: { type: String, index: true }, slug: { type: String, unique: true }, title: String, duration: Number, nightsMakkah: Number, nightsMadinah: Number, price: Number, previousPrice: Number, departure: String, airline: String, hotelMakkah: String, hotelMadinah: String, distanceMakkah: String, distanceMadinah: String, image: String, featured: Boolean, status: { type: String, default: 'draft' }, tags: [String], summary: String, inclusions: [String], exclusions: [String], documents: [String], itinerary: [Schema.Types.Mixed] }, { timestamps: true });
+const FaqSchema = new Schema({ id: String, question: String, answer: String, category: String, active: Boolean, order: Number }, { timestamps: true });
+const OfferSchema = new Schema({ id: String, title: String, description: String, badge: String, validUntil: String, active: Boolean }, { timestamps: true });
+const InquirySchema = new Schema({ id: String, name: String, phone: String, packageTitle: String, travelers: Number, status: String, createdAt: String }, { timestamps: true });
+const ContactSchema = new Schema({ id: String, name: String, email: String, phone: String, subject: String, message: String, status: String, createdAt: String }, { timestamps: true });
+export const PackageModel = mongoose.models.Package || mongoose.model('Package', PackageSchema);
+export const FaqModel = mongoose.models.Faq || mongoose.model('Faq', FaqSchema);
+export const OfferModel = mongoose.models.Offer || mongoose.model('Offer', OfferSchema);
+export const InquiryModel = mongoose.models.Inquiry || mongoose.model('Inquiry', InquirySchema);
+export const ContactModel = mongoose.models.Contact || mongoose.model('Contact', ContactSchema);

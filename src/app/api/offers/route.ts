@@ -1,0 +1,2 @@
+import { NextResponse } from 'next/server'; import { offerRepo } from '@/lib/repository'; import { connectMongo,hasMongo } from '@/lib/mongodb'; import { OfferModel } from '@/models/mongoose'; const Model=OfferModel as any;
+export async function GET(){if(hasMongo){await connectMongo();return NextResponse.json({success:true,data:await Model.find({active:true}).sort({createdAt:-1}).lean()})}return NextResponse.json({success:true,data:offerRepo.list()})}
